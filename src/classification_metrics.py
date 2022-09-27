@@ -1,5 +1,4 @@
 # Libraries
-import numpy as np
 import pandas as pd
 
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
@@ -37,7 +36,7 @@ def f1(y_true, y_pred, round=False):
     else:
         return f1_score(y_true, y_pred)
 
-def report(y_true, y_pred):
+def class_report(y_true, y_pred):
     # * Function that returns classification report
     # * with 4 metrics (Accuracy, Precision, Recall, F1)
 
@@ -50,6 +49,7 @@ def report(y_true, y_pred):
     # Create dataframe with merics
     report = {'Accuracy':accuracy, 'Precision':precision, 'Recall':recall, "F1":f1}
     report = pd.DataFrame.from_dict(report, orient='index', columns=['Value'])
+    report = report.round(2)
 
     return report
 
